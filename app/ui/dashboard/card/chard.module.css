@@ -1,0 +1,36 @@
+.container{
+    background-color: var(--dashboardcolor);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap:20px;
+    cursor: pointer;
+
+}
+.texts{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+}
+.number{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.details{
+font-size: 14px;
+font-weight: 300;
+}
+.positive{
+    color: lime;
+}
+.negative{
+    color:red
+}
+.texts{
+  color:var(--textblack) 
+}
+.title{
+  color:var(--textblack) 
+}

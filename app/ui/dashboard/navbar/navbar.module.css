@@ -1,0 +1,36 @@
+.container{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--bSoft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+    color:var(--textblack);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.menu{
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+.search{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    background-color: #2e2e2e;
+    padding: 10px;
+    border-radius: 10px;
+}
+.input{
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+    outline: none;
+}
+.icons{
+    display: flex;
+    gap:20px;
+}

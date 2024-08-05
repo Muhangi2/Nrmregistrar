@@ -1,0 +1,50 @@
+.container{
+    background-color: var(--dashboardcolor);
+    padding: 20px;
+    border-radius: 10px;
+  
+   
+}
+.title{
+    margin-bottom: 20px;
+    font-weight: 200;
+    color: var(--textblack);
+}
+.table{
+    width: 100%;
+}
+.table td{
+    padding: 10px;
+}
+.flex{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.userImage{
+    object-fit: cover;
+    border-radius: 50%;
+}
+.status{
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+}
+.user{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+}
+.pending{
+  background-color: #f7cb7375;
+}
+.done{
+ background-color: #46ce1d75;
+}
+.cancelled{
+background-color: #885f0c75;
+}
+.eliod{
+    background-color: rgb(213, 47, 255);
+}

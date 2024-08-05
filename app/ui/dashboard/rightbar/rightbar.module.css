@@ -1,0 +1,53 @@
+.container{
+   position:fixed;
+}
+.item{
+ position: relative;
+ background-color:linear-gradient(to top,#182237,#252525);
+ padding: 20px 10px;
+ border-radius: 10px;
+ margin-bottom: 10px;
+
+}
+
+.bgContainer{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+}
+.bg{
+    object-fit: contain;
+    opacity: 0.2;
+}
+
+.texts{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.notifications{
+  font-weight: 400;
+}
+.titles{
+font-weight: 100;
+font-size: 15px;
+color: var(--textSoft);
+}
+.subtitle{
+
+}
+.button{
+padding: 10px;
+border-radius: 5px;
+display: flex;
+align-items: center;
+gap: 10px;
+background-color:rgb(125, 125, 189);
+color: white;
+align-items: center;
+border: none;
+cursor: pointer;
+width: max-content;
+}
