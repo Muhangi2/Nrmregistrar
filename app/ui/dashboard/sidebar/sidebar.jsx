@@ -15,55 +15,61 @@ const Sidebar = () => {
         path:"/dashboard",
         icon:<MdDashboard/>,
       },{
-        title:"Users",
-        path:"/dashboard/users",
+        title:"Addmembers",
+        path:"/dashboard/users/add",
         icon:<MdSupervisedUserCircle/>,
       },
       {
-        title:"Products",
-        path:"/dashboard/products",
+        title:"Members",
+        path:"/dashboard/users",
         icon:<MdShoppingBag/>,
       },
       {
-        title:"Transactions",
+        title:"colleges",
+        path:"/dashboard/transactions",
+        icon:<MdAttachMoney/>,
+      },
+      {
+        title:"Settings",
         path:"/dashboard/transactions",
         icon:<MdAttachMoney/>,
       }
+      
     ]
     },
-    {
-      title:"Analytics",
-      list:[
-        {
-          title:"Revenue",
-          path:"/dashboard/revenue",
-          icon:<MdWork/>,
-        },{
-          title:"Reports",
-          path:"/dashboard/reports",
-          icon:<MdAnalytics/>,
-        },
-        {
-          title:"Teams",
-          path:"/dashboard/teams",
-          icon:<MdPeople/>,
-        },
-      ]
-      },
-      {
-        title:"User",
-        list:[
-          {
-            title:"settings",
-            path:"/dashboard/settings",
-            icon:<MdSettings/>,
-          },{
-            title:"Help",
-            path:"/dashboard/help",
-            icon:<MdHelpCenter/>,
-          },
-        ]
-     }
+    // {
+    //   title:"Analytics",
+    //   list:[
+    //     {
+    //       title:"Revenue",
+    //       path:"/dashboard/revenue",
+    //       icon:<MdWork/>,
+    //     },{
+    //       title:"Reports",
+    //       path:"/dashboard/reports",
+    //       icon:<MdAnalytics/>,
+    //     },
+    //     {
+    //       title:"Teams",
+    //       path:"/dashboard/teams",
+    //       icon:<MdPeople/>,
+    //     },
+    //   ]
+    //   },
+    //   {
+    //     title:"User",
+    //     list:[
+    //       {
+    //         title:"settings",
+    //         path:"/dashboard/settings",
+    //         icon:<MdSettings/>,
+    //       },{
+    //         title:"Help",
+    //         path:"/dashboard/help",
+    //         icon:<MdHelpCenter/>,
+    //       },
+    //     ]
+    //  }
   ]
 
   return (
