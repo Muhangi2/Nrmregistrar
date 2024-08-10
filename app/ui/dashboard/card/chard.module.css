@@ -5,8 +5,12 @@
     display: flex;
     gap:20px;
     cursor: pointer;
+    display: flex;
+    background-color: greenyellow;
 
 }
+
+
 .texts{
     display: flex;
     flex-direction: column;

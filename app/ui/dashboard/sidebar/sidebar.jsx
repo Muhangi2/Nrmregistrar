@@ -1,6 +1,11 @@
 import React from 'react'
 import styles from './sidebar.module.css'
-import {MdDashboard,MdSupervisedUserCircle,MdShoppingBag,MdAttachMoney,MdWork,MdAnalytics,MdPeople,MdOutlineSettings,MdHelpCenter,MdLogout, MdSettings} from 'react-icons/md'
+import {MdDashboard,MdSupervisedUserCircle,MdShoppingBag,MdAttachMoney,MdWork,MdAnalytics,MdPeople,MdOutlineSettings,MdHelpCenter,MdLogout,} from 'react-icons/md'
+import { IoPersonAdd } from "react-icons/io5";
+import { IoIosPeople } from "react-icons/io";
+import { FaBuildingColumns } from "react-icons/fa6";
+import { IoIosSettings } from "react-icons/io";
+import { IoIosLogOut } from "react-icons/io";
 
 import MenuLink from './menuLink/menuLink'
 import Image from 'next/image'
@@ -15,61 +20,34 @@ const Sidebar = () => {
         path:"/dashboard",
         icon:<MdDashboard/>,
       },{
-        title:"Addmembers",
+        title:"Addmember",
         path:"/dashboard/users/add",
-        icon:<MdSupervisedUserCircle/>,
+        icon:<IoPersonAdd/>,
       },
       {
         title:"Members",
         path:"/dashboard/users",
-        icon:<MdShoppingBag/>,
+        icon:<IoIosPeople />,
       },
       {
-        title:"colleges",
+        title:"Colleges",
         path:"/dashboard/transactions",
-        icon:<MdAttachMoney/>,
+        icon:<FaBuildingColumns/>,
       },
       {
         title:"Settings",
         path:"/dashboard/transactions",
-        icon:<MdAttachMoney/>,
+        icon:<IoIosSettings/>,
+      },
+      {
+        title:"Logout",
+        path:"/dashboard/logout",
+        icon:<IoIosLogOut/>,
       }
       
     ]
     },
-    // {
-    //   title:"Analytics",
-    //   list:[
-    //     {
-    //       title:"Revenue",
-    //       path:"/dashboard/revenue",
-    //       icon:<MdWork/>,
-    //     },{
-    //       title:"Reports",
-    //       path:"/dashboard/reports",
-    //       icon:<MdAnalytics/>,
-    //     },
-    //     {
-    //       title:"Teams",
-    //       path:"/dashboard/teams",
-    //       icon:<MdPeople/>,
-    //     },
-    //   ]
-    //   },
-    //   {
-    //     title:"User",
-    //     list:[
-    //       {
-    //         title:"settings",
-    //         path:"/dashboard/settings",
-    //         icon:<MdSettings/>,
-    //       },{
-    //         title:"Help",
-    //         path:"/dashboard/help",
-    //         icon:<MdHelpCenter/>,
-    //       },
-    //     ]
-    //  }
+    
   ]
 
   return (

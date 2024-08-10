@@ -1,37 +1,55 @@
-.container{
-    background-color: var(--bgSoft);
+.container {
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px;
-}
-.form{
+    background-color: #FFFFFF;
+  }
+  
+  .form {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-.form input, .form textarea, .form select{
-    padding: 20px;
+  }
+  
+  .inputGroup {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+  
+  .form label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  
+  .form input,
+  .form select {
+    width: 100%;
+    padding: 10px;
     background-color: transparent;
     color: var(--text);
     border: 2px solid #2e374a;
     border-radius: 5px;
-    margin-bottom: 30px;
-}
- .form option{
+  }
+  
+  .form option {
     color: rgb(22, 19, 19);
-}
-.form input,.form select {
-    width: 45%;
-}
-.form textarea{
+  }
+  
+  .buttonContainer {
     width: 100%;
-}
-.form button{
-    width: 100%;
-    padding: 20px;
-    background-color: teal;
-    color: var(--text);
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .form button {
+    width: auto;
+    padding: 10px 50px 10px 50px;
+    background-color: yellow;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+    font-weight: bold;
+    font-size: 15px;
+  }

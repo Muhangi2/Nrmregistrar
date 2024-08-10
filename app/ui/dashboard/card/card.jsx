@@ -2,15 +2,19 @@ import React from 'react'
 import styles from "./chard.module.css"
 import { MdSupervisedUserCircle } from 'react-icons/md'
 
-const Card = () => {
+const Card = ({ icon: Icon, title, number }) => {
   return (
     <div className={styles.container}>
-        <MdSupervisedUserCircle size={30}/>
+      <div className={styles.icon}><Icon size={30}/></div>
+        
+        <div>
         <div className={styles.texts}>
-        <span className={styles.title}>Total Users</span>
-        <span className={styles.number}>10.345</span>
+        <span className={styles.title}>{title}</span>
+        <span className={styles.number}>{number}</span>
         
         </div>
+        </div>
+        
     </div>
   )
 }

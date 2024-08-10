@@ -4,14 +4,14 @@ import Image from 'next/image'
 const Transactions = () => {
   return (
     <div className={styles.container}>
-        <h2 className={styles.title}>Latest transactions</h2>
+        <h2 className={styles.title}>Colleges</h2>
         <table className={styles.table}>
             <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Status</td>
-                    <td>Date</td>
-                    <td>Amount</td>
+                    <td>CollegeName</td>
+                    <td>Female</td>
+                    <td>Male</td>
+                    <td>Total</td>
                 </tr>
             </thead>
             <tbody>
@@ -19,41 +19,44 @@ const Transactions = () => {
                     <td>
                        <div className={styles.user}>
                        <Image src="/noavatar.png" alt="" width={40} height={40} className={styles.userImage}/>
-                         John Doe
+                         CEDAT
                         </div>
                     </td>
+                    <td>345</td>
+                    <td>567</td>
                     <td >
-                        <span className={`${styles.status} ${styles.pending}`}>Pending</span>
+                        <span className={`${styles.status} ${styles.pending}`}>678</span>
                         </td>
-                    <td>12.95.2024</td>
-                    <td>$67436</td>
+                    
                 </tr> 
                 <tr>
                     <td>
                        <div className={styles.user}>
                         <Image src="/noavatar.png" alt="" width={40} height={40} className={styles.userImage}/> 
-                        John Doe
+                        COCIS
                         </div>
                     </td>
-                    <td >
-                        <span className={`${styles.status} ${styles.pending}`}>cancelled </span>
+                    <td>456</td>
+                    <td>456</td>
+                    <td>
+                        <span className={`${styles.status} ${styles.pending}`}>678</span>
                         </td>
-                    <td>12.95.2024</td>
-                    <td>$67436</td>
+                    
                 </tr>
                 <tr>
                     <td >
                        <div className={styles.user}>
                         <Image src="/noavatar.png" alt="" width={40} height={40} className={styles.userImage}/>
-                        John Doe
+                        CHUSS
                        </div> 
                         
                     </td>
+                    <td>345</td>
+                    <td>677</td>
                     <td >
-                        <span className={`${styles.status} ${styles.cancelled}`}> done </span>
+                        <span className={`${styles.status} ${styles.cancelled}`}> 567 </span>
                         </td>
-                    <td>12.95.2024</td>
-                    <td>$67436</td>
+                   
                 </tr>
 
             </tbody>

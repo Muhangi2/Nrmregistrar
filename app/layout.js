@@ -4,8 +4,9 @@ import "./ui/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "ELiod Dev Next.js Admin Dashboard",
-  description: "This an admin dashboard built with nextjs14 and using ServerAction",
+  title: "NRM REGISTER",
+  description:
+    "This an NRM register  dashboard built with nextjs14 and using ServerAction",
 };
 
 export default function RootLayout({ children }) {

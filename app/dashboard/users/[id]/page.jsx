@@ -9,6 +9,7 @@ const SingeUser = () => {
             <div className={styles.imgContainer}>
                 <Image src="/noavatar.png" alt="" fill />
                 John Doe
+                
             </div>
         </div>
         <div className={styles.formContainer}>
