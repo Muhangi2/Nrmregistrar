@@ -2,10 +2,15 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    firstname: {
       type: String,
       required: true,
-      unique: true,
+      min: 2,
+      max: 20,
+    },
+    secondname: {
+      type: String,
+      required: true,
       min: 2,
       max: 20,
     },
@@ -13,30 +18,48 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      min: 2,
-      max: 20,
     },
-    password: {
+    contact: {
       type: String,
       required: true,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    img: {
+    district: {
       type: String,
-      default: "",
+      required: true,
+    },
+    hometown: {
+      type: String,
+      required: true,
+    },
+    studentNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    registrationnumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    residencehall: {
+      type: String,
+      required: true,
+    },
+    position: {
+      type: String,
+      required: true,
+    },
+    college: {
+      type: String,
+      required: true,
+    },
+    school: {
+      type: String,
+      required: true,
     },
     isActive: {
       type: Boolean,
       default: true,
-    },
-    phone: {
-      type: String,
-    },
-    address: {
-      type: String,
     },
   },
   {
@@ -45,4 +68,3 @@ const userSchema = new mongoose.Schema(
 );
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
-
