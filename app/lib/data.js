@@ -40,38 +40,32 @@ export const fetchDashboardData = async () => {
 export const fetchCollegeData = async () => {
   try {
     await connectToDatabase();
+    const voters = await Voter.find({});
+    const collegeData = {};
 
-    const collegeData = await Voter.aggregate([
-      {
-        $group: {
-          _id: "$college",
-          totalStudents: { $sum: 1 },
-          males: {
-            $sum: {
-              $cond: [{ $eq: ["$gender", "Male"] }, 1, 0],
-            },
-          },
-          females: {
-            $sum: {
-              $cond: [{ $eq: ["$gender", "Female"] }, 1, 0],
-            },
-          },
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          college: "$_id",
-          totalStudents: 1,
-          males: 1,
-          females: 1,
-        },
-      },
-    ]);
+    voters.forEach((voter) => {
+      const college = voter.college;
+      if (!collegeData[college]) {
+        collegeData[college] = {
+          totalStudents: 0,
+          males: 0,
+          females: 0,
+        };
+      }
+      collegeData[college].totalStudents += 1;
 
-    return collegeData;
+      if (voter.gender === "Male") {
+        collegeData[college].males += 1;
+      } else if (voter.gender === "Female") {
+        collegeData[college].females += 1;
+      }
+    });
+
+    return Object.keys(collegeData).map((college) => ({
+      college,
+      ...collegeData[college],
+    }));
   } catch (error) {
     console.error("Error fetching college data:", error);
-    throw new Error("Failed to fetch college data");
   }
 };

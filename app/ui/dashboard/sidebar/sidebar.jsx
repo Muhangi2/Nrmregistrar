@@ -35,11 +35,6 @@ const Sidebar = () => {
         icon:<FaBuildingColumns/>,
       },
       {
-        title:"Settings",
-        path:"/dashboard/settings ",
-        icon:<IoIosSettings/>,
-      },
-      {
         title:"Logout",
         path:"/dashboard/logout",
         icon:<IoIosLogOut/>,

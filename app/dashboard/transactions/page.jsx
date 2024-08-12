@@ -1,29 +1,16 @@
-"use client"
 import React from 'react'
-import { useState,useEffect } from 'react'
 import styles from "./transactions.module.css"
 import Search from '@/app/ui/dashboard/search/Search'
 import Link from 'next/link'
-import Image from 'next/image'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
-import { exportToExcel } from '@/app/lib/action'
 import { fetchCollegeData } from '@/app/lib/data'
 
 const UsersPage = async() => {
-  const [collegeData, setCollegeData] = useState([]);
-  console.log(collegeData);
-  useEffect(() => {
-    const getData = async () => {
+  
       const data = await fetchCollegeData();
-      setCollegeData(data);
-    };
-
-    getData();
-  }, []);
-
-  const users = await fetchUsers();
-  console.log(users);
+      console.log(data,"datata")
+      
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -42,34 +29,19 @@ const UsersPage = async() => {
       <table className={styles.table}>
         <thead>
             <tr>
-                <td>FirstName</td>
-                <td>SecondName</td>
-                <td>Gender</td>
-                <td>StdNo</td>
-                <td>ResidenceHall</td>
                 <td>College</td>
-                <td>Status</td>
-                <td>Action</td>
+                <td>Male</td>
+                <td>Female</td>
+                <td>Total</td>
             </tr>
         </thead>
         <tbody>
-          {users?.map(user => (
+          {data?.map(user => (
             <tr key={user.id}>
-                <td>{user.firstname}</td>
-                <td>{user.secondname}</td>
-                <td>{user.gender}</td>
-                <td>{user.studentNumber}</td>
-                <td>{user.residencehall}</td>
                 <td>{user.college}</td>
-                <td>{user.isActive ? 'Active' : 'Inactive'}</td>
-                <td>
-                  <div className={styles.buttons}>
-                    <Link href={`/dashboard/users/${user.id}`}>
-                      <button className={`${styles.button} ${styles.view}`}>View</button>
-                    </Link>
-                    <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-                  </div>
-                </td>
+                <td>{user.males}</td>
+                <td>{user.females}</td>
+                <td>{user.totalStudents}</td>
             </tr>
           ))}
         </tbody>
