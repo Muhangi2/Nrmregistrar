@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const voterSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema(
       required: true,
       min: 2,
       max: 20,
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female"],
+      required: true,
     },
     email: {
       type: String,
@@ -45,10 +50,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    position: {
-      type: String,
-      required: true,
-    },
     college: {
       type: String,
       required: true,
@@ -67,4 +68,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
+export const Voter =
+  mongoose.models?.Voter || mongoose.model("Voter", voterSchema);

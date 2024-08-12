@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
+import { exportToExcel } from '@/app/lib/action'
 
 const UsersPage = async() => {
   const users = await fetchUsers();
@@ -13,27 +14,36 @@ const UsersPage = async() => {
     <div className={styles.container}>
       <div className={styles.top}>
        <Search placeholder="Search for a user..."/>
-       <Link href="/dashboard/users/add">
-         <button className={styles.addButton}>Add New</button>
-       </Link>
+       <div className={styles.topRight}>
+          <form action={exportToExcel}>
+            <button type="submit" className={styles.exportButton}>
+              Export Excel
+            </button>
+          </form>
+          <Link href="/dashboard/users/add">
+            <button className={styles.addButton}>Add New</button>
+          </Link>
+        </div>
       </div>
       <table className={styles.table}>
         <thead>
             <tr>
-                <td>First Name</td>
-                <td>Second Name</td>
-                <td>Student Number</td>
-                <td>Hall of Residence</td>
+                <td>FirstName</td>
+                <td>SecondName</td>
+                <td>Gender</td>
+                <td>StdNo</td>
+                <td>ResidenceHall</td>
                 <td>College</td>
                 <td>Status</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
-          {users.map(user => (
+          {users?.map(user => (
             <tr key={user.id}>
                 <td>{user.firstname}</td>
                 <td>{user.secondname}</td>
+                <td>{user.gender}</td>
                 <td>{user.studentNumber}</td>
                 <td>{user.residencehall}</td>
                 <td>{user.college}</td>

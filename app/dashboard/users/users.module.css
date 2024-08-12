@@ -53,3 +53,28 @@ padding: 5px 10px;
 .delete{
     background-color: crimson;
 }
+.topRight {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .exportButton {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .exportButton:hover {
+    background-color: #218838;
+  }
+  
+  .exportButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+  }

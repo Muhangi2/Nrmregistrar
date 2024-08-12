@@ -36,7 +36,7 @@ const Sidebar = () => {
       },
       {
         title:"Settings",
-        path:"/dashboard/transactions",
+        path:"/dashboard/settings ",
         icon:<IoIosSettings/>,
       },
       {

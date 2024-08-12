@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from "./adduser.module.css"
-import { addUsers } from '@/app/lib/action'
+import { addVoters } from '@/app/lib/action'
 
 const AddUserPage = () => {
   return (
     <div className={styles.container}>
-      <form action={addUsers} className={styles.form}>
+      <form action={addVoters} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="firstname">First Name</label>
           <input type='text' id="firstname" name='firstname' />
@@ -13,6 +13,14 @@ const AddUserPage = () => {
         <div className={styles.inputGroup}>
           <label htmlFor="secondname">Second Name</label>
           <input type='text' id="secondname" name='secondname' />
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="gender">Gender</label>
+          <select name='gender' id='gender'>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
@@ -42,10 +50,7 @@ const AddUserPage = () => {
           <label htmlFor="residencehall">Hall of Attachment</label>
           <input type='text' id="residencehall" name='residencehall' />
         </div>
-        <div className={styles.inputGroup}>
-          <label htmlFor="position">Position</label>
-          <input type='text' id="position" name='position' />
-        </div>
+      
         <div className={styles.inputGroup}>
           <label htmlFor="college">College</label>
           <select name='college' id='college'>
