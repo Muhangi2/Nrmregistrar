@@ -36,3 +36,42 @@ export const fetchDashboardData = async () => {
     throw new Error("Error fetching dashboard data");
   }
 };
+
+export const fetchCollegeData = async () => {
+  try {
+    await connectToDatabase();
+
+    const collegeData = await Voter.aggregate([
+      {
+        $group: {
+          _id: "$college",
+          totalStudents: { $sum: 1 },
+          males: {
+            $sum: {
+              $cond: [{ $eq: ["$gender", "Male"] }, 1, 0],
+            },
+          },
+          females: {
+            $sum: {
+              $cond: [{ $eq: ["$gender", "Female"] }, 1, 0],
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          college: "$_id",
+          totalStudents: 1,
+          males: 1,
+          females: 1,
+        },
+      },
+    ]);
+
+    return collegeData;
+  } catch (error) {
+    console.error("Error fetching college data:", error);
+    throw new Error("Failed to fetch college data");
+  }
+};

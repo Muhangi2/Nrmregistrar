@@ -1,4 +1,6 @@
+"use client"
 import React from 'react'
+import { useState,useEffect } from 'react'
 import styles from "./transactions.module.css"
 import Search from '@/app/ui/dashboard/search/Search'
 import Link from 'next/link'
@@ -6,15 +8,27 @@ import Image from 'next/image'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
 import { exportToExcel } from '@/app/lib/action'
+import { fetchCollegeData } from '@/app/lib/data'
 
 const UsersPage = async() => {
+  const [collegeData, setCollegeData] = useState([]);
+  console.log(collegeData);
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchCollegeData();
+      setCollegeData(data);
+    };
+
+    getData();
+  }, []);
+
   const users = await fetchUsers();
   console.log(users);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
        <Search placeholder="Search for a user..."/>
-       <div className={styles.topRight}>
+       {/* <div className={styles.topRight}>
           <form action={exportToExcel}>
             <button type="submit" className={styles.exportButton}>
               Export Excel
@@ -23,7 +37,7 @@ const UsersPage = async() => {
           <Link href="/dashboard/users/add">
             <button className={styles.addButton}>Add New</button>
           </Link>
-        </div>
+        </div> */}
       </div>
       <table className={styles.table}>
         <thead>

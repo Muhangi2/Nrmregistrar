@@ -43,7 +43,7 @@ export const addVoters = async (formData) => {
       school,
       isActive: true, // Setting a default value
     });
-    console.log(newVoter, "saved in the database");
+    console.log(newVoter, "saved in the databasess");
 
     const savedVoter = await newVoter.save(); // Changed from `Voter` to `savedVoter`
     console.log(savedVoter, "Voter added successfully");
