@@ -2,7 +2,6 @@ import { connectToDatabase } from "./util";
 import { Voter } from "./models"; // Ensure this import is correct and at the top
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import bcrypt from "bcrypt";
 import * as XLSX from "xlsx";
 import { writeFile } from "fs/promises";
 import { headers } from "next/headers";

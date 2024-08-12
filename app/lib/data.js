@@ -11,7 +11,7 @@ export const fetchUsers = async () => {
     // throw new Error("Error fetching users");
   }
 };
-//dashboard data
+//dashboard datayx
 export const fetchDashboardData = async () => {
   try {
     await connectToDatabase();
