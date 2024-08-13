@@ -3,14 +3,9 @@ import React from 'react'
 import styles from "./piechart.module.css"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-];
-
 const COLORS = ['#0088FE', '#FFBB28']; // Blue and Yellow
 
-const Piechart = () => {
+const Piechart = ({ data }) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>Pie Chart</div>

@@ -7,9 +7,12 @@ import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
 import { exportToExcel } from '@/app/lib/action'
 
-const UsersPage = async() => {
-  const users = await fetchUsers();
-  console.log(users);
+const UsersPage = async(searchParams) => {
+//we used q instead of query
+console.log("search params",searchParams)
+  const q=searchParams?.searchParams?.q||"";
+  console.log("datata",q)
+  const users = await fetchUsers(q);
   return (
     <div className={styles.container}>
       <div className={styles.top}>

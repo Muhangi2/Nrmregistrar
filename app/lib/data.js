@@ -1,14 +1,15 @@
 import { Voter } from "./models";
 import { connectToDatabase } from "./util";
 
-export const fetchUsers = async () => {
+export const fetchUsers = async (q) => {
+  const regex = new RegExp(q, "i");
   try {
-    connectToDatabase();
-    const voters = await Voter.find();
+    await connectToDatabase();
+    const voters = await Voter.find({ firstname: { $regex: regex } });
     return voters;
   } catch (error) {
-    console.log(error, "error");
-    // throw new Error("Error fetching users");
+    console.error("Error fetching users:", error);
+    return [];
   }
 };
 //dashboard datayx
@@ -33,7 +34,6 @@ export const fetchDashboardData = async () => {
     };
   } catch (error) {
     console.log(error, "Error fetching dashboard data");
-    throw new Error("Error fetching dashboard data");
   }
 };
 

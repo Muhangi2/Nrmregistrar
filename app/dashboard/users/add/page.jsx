@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from "./adduser.module.css"
-import { addVoters } from '@/app/lib/action'
+import React from 'react';
+import styles from "./adduser.module.css";
+import { addVoters } from '@/app/lib/action';
 
 const AddUserPage = () => {
   return (
@@ -8,15 +8,15 @@ const AddUserPage = () => {
       <form action={addVoters} className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="firstname">First Name</label>
-          <input type='text' id="firstname" name='firstname' />
+          <input type='text' id="firstname" name='firstname' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="secondname">Second Name</label>
-          <input type='text' id="secondname" name='secondname' />
+          <input type='text' id="secondname" name='secondname' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="gender">Gender</label>
-          <select name='gender' id='gender'>
+          <select name='gender' id='gender' required>
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -24,47 +24,58 @@ const AddUserPage = () => {
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="email">Email</label>
-          <input type='email' id="email" name='email' />
+          <input type='email' id="email" name='email' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="contact">Contact</label>
-          <input type='text' id="contact" name='contact' />
+          <input type='text' id="contact" name='contact' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="district">District</label>
-          <input type='text' id="district" name='district' />
+          <input type='text' id="district" name='district' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="hometown">Village/Town</label>
-          <input type='text' id="hometown" name='hometown' />
+          <input type='text' id="hometown" name='hometown' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="studentNumber">Student Number</label>
-          <input type='text' id="studentNumber" name='studentNumber' />
+          <input type='text' id="studentNumber" name='studentNumber' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="registrationnumber">Registration Number</label>
-          <input type='text' id="registrationnumber" name='registrationnumber' />
+          <input type='text' id="registrationnumber" name='registrationnumber' required />
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="residencehall">Hall of Attachment</label>
-          <input type='text' id="residencehall" name='residencehall' />
+          <input type='text' id="residencehall" name='residencehall' required />
         </div>
-      
         <div className={styles.inputGroup}>
           <label htmlFor="college">College</label>
-          <select name='college' id='college'>
+          <select name='college' id='college' required>
             <option value="">Select College</option>
+            <option value="CEES">CEES</option>
             <option value="COCIS">COCIS</option>
             <option value="CEDAT">CEDAT</option>
+            <option value="CHS">CHS</option>
+            <option value="CHUSS">CHUSS</option>
+            <option value="CONAS">CONAS</option>
+            <option value="CAES">CAES</option>
+            <option value="COBAMS">COBAMS</option>
+            <option value="COVAB">COVAB</option>
+            <option value="SCHOOL OF LAW">SCHOOL OF LAW</option>
+            <option value="JINJA CAMPUS">JINJA CAMPUS</option>
           </select>
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="school">School</label>
-          <select name='school' id='school'>
+          <select name='school' id='school' required>
             <option value="">Select School</option>
-            <option value="Law">School of Law</option>
-            <option value="Computing">School of Computing</option>
+            <option value="School of Law">School of Law</option>
+            <option value="School of Computing">School of Computing</option>
+            <option value="School of Engineering">School of Engineering</option>
+            <option value="School of Medicine">School of Medicine</option>
+            {/* Add more school options as needed */}
           </select>
         </div>
         <div className={styles.buttonContainer}>
@@ -72,7 +83,7 @@ const AddUserPage = () => {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default AddUserPage
+export default AddUserPage;
