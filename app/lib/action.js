@@ -9,7 +9,7 @@ import { headers } from "next/headers";
 //addingVoter
 export const addVoters = async (formData) => {
   "use server";
-  console.log(formData);
+  console.log("formdatatatatatatata", formData);
   const {
     firstname,
     secondname,

@@ -48,7 +48,18 @@ const AddUserPage = () => {
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="residencehall">Hall of Attachment</label>
-          <input type='text' id="residencehall" name='residencehall' required />
+          <select type='text' id="residencehall" name='residencehall' required >
+          <option value="">Select Hall</option>
+    <option value="Lumumba">Lumumba</option>
+    <option value="Livingstone">Livingstone</option>
+    <option value="Mitchell">Mitchell</option>
+    <option value="Nkurumah">Nkurumah</option>
+    <option value="Nsibirwa">Nsibirwa</option>
+    <option value="University Hall">University Hall</option>
+    <option value="Africa">Africa</option>
+    <option value="Complex">Complex</option>
+    <option value="Mary Stuart">Mary Stuart</option>
+            </select>
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="college">College</label>

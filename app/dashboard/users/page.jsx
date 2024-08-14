@@ -12,8 +12,7 @@ const UsersPage = async(searchParams) => {
   const page=searchParams?.searchParams?.page||1;
 
   const {voters,count} = await fetchUsers(q,page);
-  console.log(voters,"usersssssss");
-  console.log(count,"counttttttttttt");
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
