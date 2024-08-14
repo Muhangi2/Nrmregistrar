@@ -17,6 +17,7 @@ const Page = () => {
           <input type='text' name='password' placeholder='password' />
           <input type='confirmpassword' name='confirmpassword' placeholder='confirmpassword' />
           <button><h3>Register</h3></button>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           <h3>Already have an account ?<span className={styles.link}>  Login</span></h3>
         </form>
       </div>
