@@ -1,18 +1,39 @@
-.container{
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #2e374a;
+.container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    width:max-content;
-}
-
-.input{
+    background-color: #2e374a;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 250px;
+    transition: all 0.3s ease;
+  }
+  
+  .container:focus-within {
+    box-shadow: 0 0 0 2px #6c5ce7;
+    background-color: #3a4456;
+  }
+  
+  .icon {
+    color: #a0aec0;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .input {
     background-color: transparent;
     border: none;
     color: var(--text);
     outline: none;
-    
-}
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  .input::placeholder {
+    color: #a0aec0;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+    }
+  }

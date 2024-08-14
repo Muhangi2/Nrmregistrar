@@ -1,12 +1,8 @@
 import React from 'react'
 import styles from "./transactions.module.css"
-import Search from '@/app/ui/dashboard/search/Search'
-import Link from 'next/link'
-import Pagination from '@/app/ui/pagination/Pagination'
-import {fetchUsers} from '@/app/lib/data'
 import { fetchCollegeData } from '@/app/lib/data'
 
-const UsersPage = async() => {
+const Collegepage = async() => {
   
       const data = await fetchCollegeData();
       console.log(data,"datata")
@@ -14,7 +10,7 @@ const UsersPage = async() => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-       <Search placeholder="Search for a user..."/>
+       {/* <Search placeholder="Search for a user..."/> */}
        {/* <div className={styles.topRight}>
           <form action={exportToExcel}>
             <button type="submit" className={styles.exportButton}>
@@ -46,9 +42,9 @@ const UsersPage = async() => {
           ))}
         </tbody>
       </table>
-      <Pagination/>
+      {/* <Pagination/> */}
     </div>
   )
 }
 
-export default UsersPage
+export default Collegepage

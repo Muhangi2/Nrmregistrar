@@ -1,13 +1,48 @@
-.container{
+.container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-.button{
-    padding: 5px 10px;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 8px 16px;
     cursor: pointer;
-}
-.button:disabled{
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .button:hover:not(:disabled) {
+    background-color: #5b4cdb;
+  }
+  
+  .button:disabled {
     cursor: not-allowed;
-}
-
+    opacity: 0.5;
+    background-color: #a29bfe;
+  }
+  
+  .pageInfo {
+    font-size: 14px;
+    color: #4a4a4a;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .button {
+      width: 100%;
+      justify-content: center;
+    }
+  }

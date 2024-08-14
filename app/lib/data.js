@@ -1,17 +1,34 @@
 import { Voter } from "./models";
 import { connectToDatabase } from "./util";
 
-export const fetchUsers = async (q) => {
+export const fetchUsers = async (q, page) => {
   const regex = new RegExp(q, "i");
+  const ITEMS_PER_PAGE = 10;
+
   try {
     await connectToDatabase();
-    const voters = await Voter.find({ firstname: { $regex: regex } });
-    return voters;
+    const count = await Voter.find({
+      $or: [
+        { firstname: { $regex: regex } },
+        { secondname: { $regex: regex } },
+      ],
+    }).count();
+    const voters = await Voter.find({
+      $or: [
+        { firstname: { $regex: regex } },
+        { secondname: { $regex: regex } },
+      ],
+    })
+      .limit(ITEMS_PER_PAGE)
+      .skip(ITEMS_PER_PAGE * (page - 1));
+
+    return { voters, count };
   } catch (error) {
     console.error("Error fetching users:", error);
     return [];
   }
 };
+
 //dashboard datayx
 export const fetchDashboardData = async () => {
   try {

@@ -2,17 +2,18 @@ import React from 'react'
 import styles from "./users.module.css"
 import Search from '@/app/ui/dashboard/search/Search'
 import Link from 'next/link'
-import Image from 'next/image'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
 import { exportToExcel } from '@/app/lib/action'
 
 const UsersPage = async(searchParams) => {
 //we used q instead of query
-console.log("search params",searchParams)
   const q=searchParams?.searchParams?.q||"";
-  console.log("datata",q)
-  const users = await fetchUsers(q);
+  const page=searchParams?.searchParams?.page||1;
+
+  const {voters,count} = await fetchUsers(q,page);
+  console.log(voters,"usersssssss");
+  console.log(count,"counttttttttttt");
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -42,7 +43,7 @@ console.log("search params",searchParams)
             </tr>
         </thead>
         <tbody>
-          {users?.map(user => (
+          {voters?.map(user => (
             <tr key={user.id}>
                 <td>{user.firstname}</td>
                 <td>{user.secondname}</td>
@@ -54,7 +55,7 @@ console.log("search params",searchParams)
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/users/${user.id}`}>
-                      <button className={`${styles.button} ${styles.view}`}>View</button>
+                      {/* <button className={`${styles.button} ${styles.view}`}>View</button> */}
                     </Link>
                     <button className={`${styles.button} ${styles.delete}`}>Delete</button>
                   </div>
@@ -63,7 +64,7 @@ console.log("search params",searchParams)
           ))}
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination count={count}/>
     </div>
   )
 }

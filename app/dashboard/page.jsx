@@ -2,12 +2,12 @@
 import React from 'react'
 import Card from '../ui/dashboard/card/card'
 import styles from "../ui/dashboard/dashboard.module.css"
-import Transactions from '../ui/dashboard/transactions/transactions'
 import Chart from '../ui/dashboard/chart/chart'
 import Piechart from "../ui/dashboard/piechart/piechart"
 import { fetchDashboardData } from '../lib/data'
 //importing icons
 import { FaUsers,FaMale, FaFemale , FaUniversity } from 'react-icons/fa';
+import Collegepage from './transactions/page'
 
 const page = async() => {
     const data = await fetchDashboardData();
@@ -30,7 +30,7 @@ const page = async() => {
              <div className={styles.graph}><Chart /></div>
              <div className={styles.chart}><Piechart data={pieChartData} /></div>
       </div>
-      <Transactions/>
+      <Collegepage/>
       
       </div>
       
