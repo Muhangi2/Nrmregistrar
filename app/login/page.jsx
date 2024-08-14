@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./login.module.css";
 import Image from 'next/image';
+
 const Page = () => {
   return (
     <div className={styles.container}>
@@ -11,11 +12,12 @@ const Page = () => {
       </div>
       <div className={styles.rightside}>
         <form action="" className={styles.form}>
-        <Image src="/logo.png" height="120" width="130" alt='' />
+          <Image src="/logo.png" height="120" width="130" alt='' />
           <input type='text' name='name' placeholder='username' />
           <input type='text' name='password' placeholder='password' />
           <button><h3>Login</h3></button>
-          <h3>Don't have an account ?<span className={styles.link}>Sign up</span></h3>
+          {/* Escape the single quote using `&apos;` or `&#39;` */}
+          <h3>Don&apos;t have an account?<span className={styles.link}>Sign up</span></h3>
         </form>
       </div>
     </div>
