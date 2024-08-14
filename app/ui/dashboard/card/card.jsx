@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./chard.module.css"
-import { MdSupervisedUserCircle } from 'react-icons/md'
+
 
 const Card = ({ icon: Icon, title, number }) => {
   return (

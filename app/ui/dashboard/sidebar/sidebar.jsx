@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from './sidebar.module.css'
-import {MdDashboard,MdSupervisedUserCircle,MdShoppingBag,MdAttachMoney,MdWork,MdAnalytics,MdPeople,MdOutlineSettings,MdHelpCenter,MdLogout,} from 'react-icons/md'
+import {MdDashboard,MdLogout,} from 'react-icons/md'
 import { IoPersonAdd } from "react-icons/io5";
 import { IoIosPeople } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
-import { IoIosSettings } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 
 import MenuLink from './menuLink/menuLink'
@@ -49,7 +48,7 @@ const Sidebar = () => {
     <div className={styles.container}>
       {/* user */}
       <div className={styles.user}>
-        <Image src="/logo.png" height="110" width="130" className={styles.Userimage}/>
+        <Image src="/logo.png" height="110" width="130" className={styles.Userimage} alt=''/>
       </div>
       {/* list */}
       <ul className={styles.listtypes}>

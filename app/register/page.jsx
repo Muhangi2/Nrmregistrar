@@ -11,7 +11,7 @@ const Page = () => {
       </div>
       <div className={styles.rightside}>
         <form action="" className={styles.form}>
-        <Image src="/logo.png" height="120" width="130"  />
+        <Image src="/logo.png" height="120" width="130" alt=''  />
           <input type='text' name='name' placeholder='username' />
           <input type='email' name='email' placeholder='email' />
           <input type='text' name='password' placeholder='password' />
