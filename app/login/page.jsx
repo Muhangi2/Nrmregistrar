@@ -16,7 +16,7 @@ const Page = () => {
           <input type='text' name='password' placeholder='password' />
           <button><h3>Login</h3></button>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <h3>Don't have an account ?<span className={styles.link}>Sign up</span></h3>
+          <h3>Dont have an account ?<span className={styles.link}>Sign up</span></h3>
         </form>
       </div>
     </div>
