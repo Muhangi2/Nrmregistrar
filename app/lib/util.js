@@ -1,14 +1,24 @@
 import mongoose from "mongoose";
 
+let connection = {};
 
 export const connectToDatabase = async () => {
-  const connection = {};
+  if (connection.isConnected) {
+    console.log("Already connected to the database");
+    return;
+  }
+
   try {
-    if (connection.isConnected) return;
-    const db = await mongoose.connect(process.env.MONGODB_URL);
+    const db = await mongoose.connect(process.env.MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 60000, // Increase the timeout
+    });
+
     connection.isConnected = db.connections[0].readyState;
     console.log("Connection to database established");
   } catch (error) {
-    console.log(error, "error while connecting to the database");
+    console.error("Error while connecting to the database:", error);
+    throw new Error("Failed to connect to the database");
   }
 };

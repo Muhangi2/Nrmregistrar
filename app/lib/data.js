@@ -3,7 +3,7 @@ import { connectToDatabase } from "./util";
 
 export const fetchUsers = async (q, page) => {
   const regex = new RegExp(q, "i");
-  const ITEMS_PER_PAGE = 10;
+  const ITEMS_PER_PAGE = 7;
 
   try {
     await connectToDatabase();

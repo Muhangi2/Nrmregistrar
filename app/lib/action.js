@@ -79,8 +79,6 @@ export const exportToExcel = async () => {
       School: voter.school,
       Status: voter.isActive ? "Active" : "Inactive",
     }));
-    console.log(data, "tapped on me ");
-    // Create a new workbook and worksheet
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(data);
 
@@ -96,18 +94,42 @@ export const exportToExcel = async () => {
     // Generate a unique filename
     const fileName = `voters_${Date.now()}.xlsx`;
 
-    // Write the file to the server's file system
-    await writeFile(`./public/${fileName}`, excelBuffer);
+    // Create a Blob object for download
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
 
-    // Get the base URL
-    const headersList = headers();
-    const host = headersList.get("host");
-    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-
-    // Return the URL of the generated file
-    return `${protocol}://${host}/${fileName}`;
+    // Trigger browser download
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
   } catch (error) {
     console.error("Error exporting Excel:", error);
     throw new Error("Failed to export Excel file");
+  }
+};
+
+export const deleteVoter = async (formData) => {
+  "use server";
+const {id}=Object.fromEntries(formData);
+  try {
+    await connectToDatabase();
+
+    // Find the voter by ID and delete it
+    const deletedVoter = await Voter.findByIdAndDelete(id);
+
+    if (!deletedVoter) {
+      console.log(`No voter found with ID: ${id}`);
+      return;
+    }
+
+    console.log(`Voter with ID: ${id} deleted successfully`);
+
+    // Revalidate the relevant path and redirect if needed
+    revalidatePath("/dashboard/users");
+    redirect("/dashboard/users");
+  } catch (error) {
+    console.log(error, "Error deleting Voter");
   }
 };

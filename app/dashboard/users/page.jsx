@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
 import { exportToExcel } from '@/app/lib/action'
+import { deleteVoter } from '@/app/lib/action'
 
 const UsersPage = async(searchParams) => {
 //we used q instead of query
@@ -56,7 +57,12 @@ const UsersPage = async(searchParams) => {
                     <Link href={`/dashboard/users/${user.id}`}>
                       {/* <button className={`${styles.button} ${styles.view}`}>View</button> */}
                     </Link>
-                    <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                    <form action={deleteVoter} >
+                    <input type="hidden" name="id" value={user.id} />
+                    <button type="submit" className={`${styles.button} ${styles.delete}`}>
+                      Delete
+                    </button>
+                  </form>
                   </div>
                 </td>
             </tr>

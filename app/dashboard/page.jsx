@@ -13,18 +13,18 @@ const page = async() => {
     const data = await fetchDashboardData();
     console.log(data,"data")
     const pieChartData = [
-      { name: 'Male', value: data.totalMales },
-      { name: 'Female', value: data.totalFemales },
+      { name: 'Male', value: data?.totalMales },
+      { name: 'Female', value: data?.totalFemales },
     ];
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.main}>
       <div className={styles.cards}>
-      <Card icon={FaUsers} title="Members" number={data.totalMembers} />
-          <Card icon={FaMale} title="Male" number={data.totalMales} />
-          <Card icon={FaFemale} title="Female" number={data.totalFemales} />
-          <Card icon={FaUniversity} title="Colleges" number={data.totalColleges} />
+      <Card icon={FaUsers} title="Members" number={data?.totalMembers} />
+          <Card icon={FaMale} title="Male" number={data?.totalMales} />
+          <Card icon={FaFemale} title="Female" number={data?.totalFemales} />
+          <Card icon={FaUniversity} title="Colleges" number={data?.totalColleges} />
       </div>
       <div className={styles.statistics}>
              <div className={styles.graph}><Chart /></div>
