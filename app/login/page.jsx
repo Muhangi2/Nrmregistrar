@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./login.module.css";
 import Image from 'next/image';
+import { authenticate } from '../lib/action';
 const Page = () => {
   return (
     <div className={styles.container}>
@@ -10,13 +11,13 @@ const Page = () => {
         </div>
       </div>
       <div className={styles.rightside}>
-        <form action="" className={styles.form}>
+        <form action={authenticate} className={styles.form}>
         <Image src="/logo.png" height="120" width="130" alt='' />
-          <input type='text' name='name' placeholder='username' />
+          <input type='text' name='username' placeholder='username' />
           <input type='text' name='password' placeholder='password' />
-          <button><h3>Login</h3></button>
+          <button type="submit"><h3>Login</h3></button>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <h3>Dont have an account ?<span className={styles.link}>Sign up</span></h3>
+          {/* <h3>Dont have an account ?<span className={styles.link}>Sign up</span></h3> */}
         </form>
       </div>
     </div>

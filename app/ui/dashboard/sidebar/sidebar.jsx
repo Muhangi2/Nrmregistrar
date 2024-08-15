@@ -5,6 +5,7 @@ import { IoPersonAdd } from "react-icons/io5";
 import { IoIosPeople } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { IoIosLogOut } from "react-icons/io";
+import { logout } from '@/app/lib/action';
 
 import MenuLink from './menuLink/menuLink'
 import Image from 'next/image'
@@ -33,11 +34,6 @@ const Sidebar = () => {
         path:"/dashboard/transactions",
         icon:<FaBuildingColumns/>,
       },
-      {
-        title:"Logout",
-        path:"/dashboard/logout",
-        icon:<IoIosLogOut/>,
-      }
       
     ]
     },
@@ -61,9 +57,11 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-      <button className={styles.logout}> 
+      <form action={logout}>
+      <button  type='submit' className={styles.logout}> 
       <MdLogout/>
       Logout</button>
+      </form>
     </div>
   )
 }

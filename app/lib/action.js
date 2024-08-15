@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
 import { writeFile } from "fs/promises";
 import { headers } from "next/headers";
+import { signIn, signOut } from "../auth";
 
 //addingVoter
 export const addVoters = async (formData) => {
@@ -112,7 +113,7 @@ export const exportToExcel = async () => {
 
 export const deleteVoter = async (formData) => {
   "use server";
-const {id}=Object.fromEntries(formData);
+  const { id } = Object.fromEntries(formData);
   try {
     await connectToDatabase();
 
@@ -133,3 +134,23 @@ const {id}=Object.fromEntries(formData);
     console.log(error, "Error deleting Voter");
   }
 };
+export const authenticate = async (formData) => {
+  "use server";
+  const { username, password } = Object.fromEntries(formData);
+  try {
+    await signIn("credentials", { username, password });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+export const logout = async (formData) => {
+  "use server";
+  try {
+    await signOut();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+

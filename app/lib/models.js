@@ -70,3 +70,24 @@ const voterSchema = new mongoose.Schema(
 
 export const Voter =
   mongoose.models?.Voter || mongoose.model("Voter", voterSchema);
+
+const userSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      min: 2,
+      max: 20,
+    },
+    password: {
+      type: String,
+      required: true,
+      min: 2,
+      max: 20,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+export const User = mongoose.models?.User || mongoose.model("User", userSchema);
