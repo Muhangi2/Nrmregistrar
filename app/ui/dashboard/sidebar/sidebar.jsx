@@ -6,11 +6,16 @@ import { IoIosPeople } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { IoIosLogOut } from "react-icons/io";
 import { logout } from '@/app/lib/action';
+import { auth } from '@/app/auth';
 
 import MenuLink from './menuLink/menuLink'
 import Image from 'next/image'
 
-const Sidebar = () => {
+const Sidebar = async() => {
+
+  const session=await auth();
+  console.log("session",session);
+
   const menuItems=[
     {
     title:"Pages",

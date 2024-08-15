@@ -153,4 +153,3 @@ export const logout = async (formData) => {
     throw error;
   }
 };
-

@@ -5,7 +5,6 @@ import { fetchCollegeData } from '@/app/lib/data'
 const Collegepage = async() => {
   
       const data = await fetchCollegeData();
-      console.log(data,"datata")
       
   return (
     <div className={styles.container}>
