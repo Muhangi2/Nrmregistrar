@@ -1,8 +1,39 @@
-import React from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
 import styles from "./adduser.module.css";
 import { addVoters } from '@/app/lib/action';
 
+const collegeToSchoolsMap = {
+  CEES: ["School of Education", "School of Distance and Lifelong Learning"],
+  COCIS: ["School of Computing", "School of Information Science"],
+  CEDAT: ["School of Engineering", "School of Built Environment"],
+  CHS: ["School of Medicine", "School of Public Health"],
+  CHUSS: ["School of Liberal and Performing Arts", "School of Languages, Literature and Communication"],
+  CONAS: ["School of Physical Sciences", "School of Biological Sciences"],
+  CAES: ["School of Agricultural Sciences", "School of Food Technology, Nutrition and Bioengineering"],
+  COBAMS: ["School of Business", "School of Economics"],
+  COVAB: ["School of Veterinary Medicine", "School of Biosciences"],
+  SCHOOLOFLAW: ["School of Law"],
+  JINJACAMPUS: ["Jinja School of Business", "Jinja School of Computing"],
+ 
+};
+
 const AddUserPage = () => {
+  const [selectedCollege, setSelectedCollege] = useState("");
+  const [schools, setSchools] = useState([]);
+
+  useEffect(() => {
+    if (selectedCollege && collegeToSchoolsMap[selectedCollege]) {
+      setSchools(collegeToSchoolsMap[selectedCollege]);
+    } else {
+      setSchools([]);
+    }
+  }, [selectedCollege]);
+
+  const handleCollegeChange = (event) => {
+    setSelectedCollege(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <form action={addVoters} className={styles.form}>
@@ -49,21 +80,21 @@ const AddUserPage = () => {
         <div className={styles.inputGroup}>
           <label htmlFor="residencehall">Hall of Attachment</label>
           <select type='text' id="residencehall" name='residencehall' required >
-          <option value="">Select Hall</option>
-    <option value="Lumumba">Lumumba</option>
-    <option value="Livingstone">Livingstone</option>
-    <option value="Mitchell">Mitchell</option>
-    <option value="Nkurumah">Nkurumah</option>
-    <option value="Nsibirwa">Nsibirwa</option>
-    <option value="University Hall">University Hall</option>
-    <option value="Africa">Africa</option>
-    <option value="Complex">Complex</option>
-    <option value="Mary Stuart">Mary Stuart</option>
-            </select>
+            <option value="">Select Hall</option>
+            <option value="Lumumba">Lumumba</option>
+            <option value="Livingstone">Livingstone</option>
+            <option value="Mitchell">Mitchell</option>
+            <option value="Nkurumah">Nkurumah</option>
+            <option value="Nsibirwa">Nsibirwa</option>
+            <option value="University Hall">University Hall</option>
+            <option value="Africa">Africa</option>
+            <option value="Complex">Complex</option>
+            <option value="Mary Stuart">Mary Stuart</option>
+          </select>
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="college">College</label>
-          <select name='college' id='college' required>
+          <select name='college' id='college' required onChange={handleCollegeChange}>
             <option value="">Select College</option>
             <option value="CEES">CEES</option>
             <option value="COCIS">COCIS</option>
@@ -74,19 +105,17 @@ const AddUserPage = () => {
             <option value="CAES">CAES</option>
             <option value="COBAMS">COBAMS</option>
             <option value="COVAB">COVAB</option>
-            <option value="SCHOOL OF LAW">SCHOOL OF LAW</option>
-            <option value="JINJA CAMPUS">JINJA CAMPUS</option>
+            <option value="SCHOOL OF LAW">SCHOOLOFLAW</option>
+            <option value="JINJA CAMPUS">JINJACAMPUS</option>
           </select>
         </div>
         <div className={styles.inputGroup}>
           <label htmlFor="school">School</label>
           <select name='school' id='school' required>
             <option value="">Select School</option>
-            <option value="School of Law">School of Law</option>
-            <option value="School of Computing">School of Computing</option>
-            <option value="School of Engineering">School of Engineering</option>
-            <option value="School of Medicine">School of Medicine</option>
-            {/* Add more school options as needed */}
+            {schools.map((school, index) => (
+              <option key={index} value={school}>{school}</option>
+            ))}
           </select>
         </div>
         <div className={styles.buttonContainer}>

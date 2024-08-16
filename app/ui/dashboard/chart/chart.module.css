@@ -1,12 +1,13 @@
 .container{
  height: 450px;
- padding: 20px;
+ padding: 10px;
  border-radius: 10px;
  background-color: var(--bgSoft);
+
 }
 .title{
    font-weight: 200;
     margin-bottom: 20px;
-    color: var(--textSoft);
+    color: black;
 text-align: center;
 }

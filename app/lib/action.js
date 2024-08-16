@@ -1,3 +1,4 @@
+"use server";
 import { connectToDatabase } from "./util";
 import { Voter } from "./models"; // Ensure this import is correct and at the top
 import { revalidatePath } from "next/cache";

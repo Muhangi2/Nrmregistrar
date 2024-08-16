@@ -1,80 +1,49 @@
-"use client"
-import React from 'react'
-import styles from "./chart.module.css"
+"use client";
+import React from 'react';
+import styles from "./chart.module.css";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-  {
-    name: 'Page A',
-    visit: 4000,
-    click: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    visit: 3000,
-    click: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    visit: 2000,
-    click: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    visit: 2780,
-    click: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    visit: 1890,
-    click: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    visit: 2390,
-    click: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    visit: 3490,
-    click: 4300,
-    amt: 2100,
-  },
+const allColleges = [
+  'CEES', 'COCIS', 'CEDAT', 'CHS', 'CHUSS', 'CONAS', 'CAES', 'COBAMS', 'COVAB', 'SCHOOL OF LAW', 'JINJA CAMPUS'
 ];
 
-const Chart = () => {
+const Chart = ({ data }) => {
+  // Prepare data for the chart
+  const chartData = allColleges.map(college => {
+    const collegeData = data?.find(item => item?.college === college) || {};
+    return {
+      name: college,
+      male: collegeData?.males || 0,
+      female: collegeData?.females || 0
+    };
+  });
+
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Chart</div>
-      <ResponsiveContainer width="100%" height="100%">
+      <div className={styles.title}>Members per College and based on Gender</div>
+      <ResponsiveContainer width="90%" height={400}>
         <BarChart
-          width={500}
-          height={300}
-          data={data}
+          data={chartData}
           margin={{
             top: 5,
-            right: 30,
+            right: 10,
             left: 20,
             bottom: 5,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="name" interval={0}  // Show all labels
+            angle={-45}  // Rotate labels by -45 degrees
+            textAnchor="end" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="visit" fill="#82ca9d" />
-          <Bar dataKey="click" fill="#8884d8" />
+          <Bar dataKey="male" fill="#82ca9d" name="Male" />
+          <Bar dataKey="female" fill="#8884d8" name="Female" />
         </BarChart>
       </ResponsiveContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Chart
+export default Chart;

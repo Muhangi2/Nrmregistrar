@@ -8,10 +8,13 @@ import { fetchDashboardData } from '../lib/data'
 //importing icons
 import { FaUsers,FaMale, FaFemale , FaUniversity } from 'react-icons/fa';
 import Collegepage from './transactions/page'
+import { fetchCollegeData } from '../lib/data'
 
 const page = async() => {
     const data = await fetchDashboardData();
-    console.log(data,"data")
+    const collegedata=await  fetchCollegeData();
+      
+    console.log(collegedata,"data")
     const pieChartData = [
       { name: 'Male', value: data?.totalMales },
       { name: 'Female', value: data?.totalFemales },
@@ -27,7 +30,7 @@ const page = async() => {
           <Card icon={FaUniversity} title="Colleges" number={data?.totalColleges} />
       </div>
       <div className={styles.statistics}>
-             <div className={styles.graph}><Chart /></div>
+             <div className={styles.graph}><Chart data={collegedata}/></div>
              <div className={styles.chart}><Piechart data={pieChartData} /></div>
       </div>
       <Collegepage/>
