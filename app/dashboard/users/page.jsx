@@ -4,7 +4,6 @@ import Search from '@/app/ui/dashboard/search/Search'
 import Link from 'next/link'
 import Pagination from '@/app/ui/pagination/Pagination'
 import {fetchUsers} from '@/app/lib/data'
-import { exportToExcel } from '@/app/lib/action'
 import { deleteVoter } from '@/app/lib/action'
 
 const UsersPage = async(searchParams) => {
@@ -13,17 +12,17 @@ const UsersPage = async(searchParams) => {
   const page=searchParams?.searchParams?.page||1;
 
   const {voters,count} = await fetchUsers(q,page);
+   const table = 'voter';
+  const lowercaseTable = table.toLowerCase()
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
        <Search placeholder="Search for a user..."/>
        <div className={styles.topRight}>
-          <form action={exportToExcel}>
             <button type="submit" className={styles.exportButton}>
-              Export Excel
+              <Link className="hover:underline" href={`/api/tables/${lowercaseTable}?format=xlsx`}>Export Excel</Link>
             </button>
-          </form>
           <Link href="/dashboard/users/add">
             <button className={styles.addButton}>Add New</button>
           </Link>

@@ -4,8 +4,6 @@ import { Voter } from "./models"; // Ensure this import is correct and at the to
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
-import { writeFile } from "fs/promises";
-import { headers } from "next/headers";
 import { signIn, signOut } from "../auth";
 
 //addingVoter
@@ -56,62 +54,6 @@ export const addVoters = async (formData) => {
   redirect("/dashboard/users");
 };
 
-export const exportToExcel = async () => {
-  "use server";
-
-  try {
-    await connectToDatabase();
-
-    // Fetch all voters from the database
-    const voters = await Voter.find({});
-
-    // Prepare data for Excel
-    const data = voters.map((voter) => ({
-      FirstName: voter.firstname,
-      SecondName: voter.secondname,
-      Gender: voter.gender,
-      Email: voter.email,
-      Contact: voter.contact,
-      District: voter.district,
-      Hometown: voter.hometown,
-      StudentNumber: voter.studentNumber,
-      RegistrationNumber: voter.registrationnumber,
-      ResidenceHall: voter.residencehall,
-      College: voter.college,
-      School: voter.school,
-      Status: voter.isActive ? "Active" : "Inactive",
-    }));
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.json_to_sheet(data);
-
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Voters");
-
-    // Generate buffer
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "buffer",
-    });
-
-    // Generate a unique filename
-    const fileName = `voters_${Date.now()}.xlsx`;
-
-    // Create a Blob object for download
-    const blob = new Blob([excelBuffer], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-
-    // Trigger browser download
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-  } catch (error) {
-    console.error("Error exporting Excel:", error);
-    throw new Error("Failed to export Excel file");
-  }
-};
-
 export const deleteVoter = async (formData) => {
   "use server";
   const { id } = Object.fromEntries(formData);
@@ -151,6 +93,55 @@ export const logout = async (formData) => {
     await signOut();
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+};
+export const exportToExcel = async () => {
+  "use server";
+
+  try {
+    await connectToDatabase();
+
+    // Fetch all voters from the database
+    const voters = await Voter.find({});
+
+    // Prepare the data for Excel
+    const data = voters.map(voter => ({
+      FirstName: voter.firstname,
+      SecondName: voter.secondname,
+      Gender: voter.gender,
+      Email: voter.email,
+      Contact: voter.contact,
+      District: voter.district,
+      Hometown: voter.hometown,
+      StudentNumber: voter.studentNumber,
+      RegistrationNumber: voter.registrationnumber,
+      ResidenceHall: voter.residencehall,
+      College: voter.college,
+      School: voter.school,
+      Status: voter.isActive ? 'Active' : 'Inactive'
+    }));
+
+    // Create a new workbook and worksheet
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Voters");
+
+    // Generate buffer
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+
+    // Convert buffer to base64
+    const base64 = Buffer.from(excelBuffer).toString('base64');
+
+    // Return the base64 string and filename
+    return {
+      base64: base64,
+      filename: 'voters_list.xlsx'
+    };
+  } catch (error) {
+    console.error("Error exporting to Excel:", error);
     throw error;
   }
 };
