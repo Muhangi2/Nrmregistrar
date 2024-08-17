@@ -1,15 +1,16 @@
 .container {
   background-color: var(--bgSoft);
-  padding: 30px;
+  padding: 20px;
   margin-top: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
 .top {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
@@ -17,11 +18,12 @@
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 12px 20px;
+  padding: 10px 15px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .addButton {
@@ -55,8 +57,9 @@
 }
 
 .table th, .table td {
-  padding: 15px;
+  padding: 12px;
   text-align: left;
+  white-space: nowrap;
 }
 
 .table tbody tr:nth-child(even) {
@@ -73,13 +76,14 @@
 }
 
 .button {
-  padding: 8px 15px;
+  padding: 6px 12px;
   border-radius: 5px;
   color: white;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
   border: none;
+  font-size: 12px;
 }
 
 .view {
@@ -100,26 +104,50 @@
 
 .topRight {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-@media (max-width: 768px) {
-  .top {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
+@media (min-width: 768px) {
+  .container {
+    padding: 30px;
   }
-  
-  .topRight {
+
+  .top {
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
   }
-  
-  .table {
+
+  .addButton, .exportButton {
+    width: auto;
+  }
+
+  .topRight {
+    flex-direction: row;
+  }
+
+  .table th, .table td {
+    padding: 15px;
+  }
+
+  .button {
+    padding: 8px 15px;
     font-size: 14px;
   }
-  
-  .button {
-    padding: 6px 12px;
+}
+
+@media (max-width: 600px) {
+  .table {
     font-size: 12px;
+  }
+
+  .table th, .table td {
+    padding: 8px;
+  }
+
+  .button {
+    padding: 4px 8px;
+    font-size: 10px;
   }
 }
