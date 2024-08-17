@@ -1,81 +1,125 @@
-.container{
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-
-gap: 1rem;
-/* background-color: green; */
-}
-.leftside{
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .leftside {
     display: flex;
     flex: 1;
-    position:relative;
-
-}
-.yellowcircle{
- display: flex;
- background-color: #FFDD00;
- width: 100%;
- height: 100vh;
- justify-content: flex-start; 
- align-items: center;
- clip-path: circle(65% at left 45%);
-}
-.blackcircle{
+    position: relative;
+  }
+  
+  .yellowcircle {
+    display: flex;
+    background-color: #FFDD00;
+    width: 100%;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: center;
+    clip-path: circle(65% at left 45%);
+  }
+  
+  .blackcircle {
     background-color: black;
     width: 300px;
     height: 300px;
     clip-path: circle(50% at left 50%);
-   
-}
-
-.rightside{
-    /* background-color: blue; */
-    flex:3;
+  }
+  
+  .rightside {
+    flex: 3;
     display: flex;
     flex-direction: column;
-    /* align-content: center;
-    justify-content: center; */
     align-items: center;
-}
-.logo{
+    justify-content: center; /* Center the form */
+  }
+  
+  .logo {
     width: 300px;
     height: 300px;
-}
-
-.form{
-   background-color: var(--bgSoft);
-   padding: 10px;
-   border-radius: 10px;
-   width: 500px;
-   height: 500px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 30px; 
-   
-   
-}
-.form input{
+  }
+  
+  .form {
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
     width: 100%;
-    padding: 10px;
-    border-color: black;
+    max-width: 400px; /* Restrict the form width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for a modern look */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .form input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc; /* Subtle border color */
+    border-radius: 5px;
     background-color: var(--bg);
     color: var(--text);
-    /* outline:none ; */
-}
-.form button{
-    padding: 10px;
+    font-size: 16px; /* Increase font size for better readability */
+  }
+  
+  .form button {
+    padding: 15px;
     background-color: teal;
-    color: var(--text);
+    color: #fff;
     cursor: pointer;
     border-radius: 5px;
     background-color: #FFDD00;
     width: 100%;
-}
-.link{
-    color:#FFDD00 ;
-}
-
+    font-size: 18px; /* Larger button text */
+    font-weight: bold;
+    border: none;
+  }
+  
+  .link {
+    color: #FFDD00;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px; /* Add padding to the container */
+    }
+  
+    .leftside {
+      display: none; /* Hide the left side on small screens */
+    }
+  
+    .rightside {
+      flex: 1;
+      justify-content: center; /* Center content vertically */
+      width: 100%;
+    }
+  
+    .form {
+      width: 100%; /* Make the form full width */
+      max-width: 90%; /* Add some margin on smaller screens */
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form {
+      max-width: 100%; /* Further adjust the form width for very small screens */
+      padding: 15px;
+    }
+  
+    .form input {
+      padding: 12px; /* Reduce padding on very small screens */
+      font-size: 14px;
+    }
+  
+    .form button {
+      padding: 12px;
+      font-size: 16px;
+    }
+  }
+  

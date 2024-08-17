@@ -3,6 +3,7 @@ import { connectToDatabase } from "./util";
 import { Voter } from "./models";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { signOut, signIn } from "../auth";
 
 const generateCustomId = async () => {
   const lastVoter = await Voter.findOne().sort("-customId");
@@ -108,6 +109,7 @@ export const deleteVoter = async (formData) => {
 export const authenticate = async (formData) => {
   "use server";
   const { username, password } = Object.fromEntries(formData);
+  console.log("username and password", username, password);
   try {
     await signIn("credentials", { username, password });
   } catch (error) {
