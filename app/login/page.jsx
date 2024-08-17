@@ -3,10 +3,19 @@ import React from 'react';
 import styles from "./login.module.css";
 import Image from 'next/image';
 import { authenticate } from '../lib/action';
-import {useFormState} from "react-dom"
+import { useFormState } from "react-dom";
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
-  const[state,formAction]=useFormState(authenticate,undefined)
+  const router = useRouter();
+  const [state, formAction] = useFormState(authenticate, {});
+
+  React.useEffect(() => {
+    if (state.success) {
+      router.push('/dashboard');
+    }
+  }, [state, router]);
+
   return (
     <div className={styles.container}>
       <div className={styles.leftside}>
@@ -20,7 +29,7 @@ const Page = () => {
           <input type='text' name='username' placeholder='Username' />
           <input type='password' name='password' placeholder='Password' />
           <button type="submit">Login</button>
-            {state&&state}
+          {state.error && <p className={styles.error}>{state.error}</p>}
         </form>
       </div>
     </div>

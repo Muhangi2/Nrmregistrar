@@ -110,12 +110,23 @@ export const deleteVoter = async (formData) => {
 export const authenticate = async (prevState, formData) => {
   "use server";
   const { username, password } = Object.fromEntries(formData);
-  console.log("username and password", username, password);
+  
   try {
-    await signIn("credentials", { username, password });
-    revalidatePath("/dashboard");
+    const result = await signIn("credentials", {
+      username,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      return { error: "Wrong Credentials" };
+    }
+
+    // If we reach here, authentication was successful
+    return { success: true };
   } catch (error) {
-    return "Wrong Credentials";
+    console.error("Authentication error:", error);
+    return { error: "An error occurred. Please try again." };
   }
 };
 export const logout = async (formData) => {
