@@ -1,12 +1,29 @@
 "use server";
 import { connectToDatabase } from "./util";
-import { Voter } from "./models"; // Ensure this import is correct and at the top
+import { Voter } from "./models";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import * as XLSX from "xlsx";
-import { signIn, signOut } from "../auth";
 
-//addingVoter
+const generateCustomId = async () => {
+  const lastVoter = await Voter.findOne().sort("-customId");
+
+  if (!lastVoter || !lastVoter.customId) {
+    return "MAK001A";
+  }
+
+  const lastId = lastVoter.customId;
+  const numPart = parseInt(lastId.slice(3, 6));
+  const letterPart = lastId.slice(6);
+
+  if (numPart === 999) {
+    const nextLetter = String.fromCharCode(letterPart.charCodeAt(0) + 1);
+    return `MAK001${nextLetter}`;
+  } else {
+    const nextNum = (numPart + 1).toString().padStart(3, "0");
+    return `MAK${nextNum}${letterPart}`;
+  }
+};
+
 export const addVoters = async (formData) => {
   "use server";
   console.log("formdatatatatatatata", formData);
@@ -28,7 +45,16 @@ export const addVoters = async (formData) => {
   try {
     await connectToDatabase();
 
+    let customId;
+    try {
+      customId = await generateCustomId();
+    } catch (error) {
+      console.error("Error generating custom ID:", error);
+      customId = "MAK001A"; // Fallback to initial ID if generation fails
+    }
+
     const newVoter = new Voter({
+      customId,
       firstname,
       secondname,
       gender,
@@ -43,13 +69,15 @@ export const addVoters = async (formData) => {
       school,
       isActive: true, // Setting a default value
     });
-    console.log(newVoter, "saved in the databasess");
 
-    const savedVoter = await newVoter.save(); // Changed from `Voter` to `savedVoter`
+    const savedVoter = await newVoter.save();
     console.log(savedVoter, "Voter added successfully");
   } catch (error) {
-    console.log(error, "Error adding Voter");
+    console.error("Error adding Voter:", error);
+    // You might want to handle this error more gracefully,
+    // perhaps by returning an error message to the client
   }
+
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
 };
@@ -106,7 +134,7 @@ export const exportToExcel = async () => {
     const voters = await Voter.find({});
 
     // Prepare the data for Excel
-    const data = voters.map(voter => ({
+    const data = voters.map((voter) => ({
       FirstName: voter.firstname,
       SecondName: voter.secondname,
       Gender: voter.gender,
@@ -119,7 +147,7 @@ export const exportToExcel = async () => {
       ResidenceHall: voter.residencehall,
       College: voter.college,
       School: voter.school,
-      Status: voter.isActive ? 'Active' : 'Inactive'
+      Status: voter.isActive ? "Active" : "Inactive",
     }));
 
     // Create a new workbook and worksheet
@@ -130,15 +158,18 @@ export const exportToExcel = async () => {
     XLSX.utils.book_append_sheet(workbook, worksheet, "Voters");
 
     // Generate buffer
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "buffer",
+    });
 
     // Convert buffer to base64
-    const base64 = Buffer.from(excelBuffer).toString('base64');
+    const base64 = Buffer.from(excelBuffer).toString("base64");
 
     // Return the base64 string and filename
     return {
       base64: base64,
-      filename: 'voters_list.xlsx'
+      filename: "voters_list.xlsx",
     };
   } catch (error) {
     console.error("Error exporting to Excel:", error);

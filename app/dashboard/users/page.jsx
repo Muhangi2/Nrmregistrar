@@ -31,6 +31,7 @@ const UsersPage = async(searchParams) => {
       <table className={styles.table}>
         <thead>
             <tr>
+               <td>CustomId</td>
                 <td>FirstName</td>
                 <td>SecondName</td>
                 <td>Gender</td>
@@ -44,6 +45,7 @@ const UsersPage = async(searchParams) => {
         <tbody>
           {voters?.map(user => (
             <tr key={user.id}>
+                <td>{user?.customId}</td>
                 <td>{user.firstname}</td>
                 <td>{user.secondname}</td>
                 <td>{user.gender}</td>

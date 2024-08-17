@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const voterSchema = new mongoose.Schema(
   {
+    customId: {
+      type: String,
+      unique: true,
+      required: true,
+    },
     firstname: {
       type: String,
       required: true,
