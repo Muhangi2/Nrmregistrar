@@ -4,6 +4,7 @@ import { Voter } from "./models";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signOut, signIn } from "../auth";
+import * as XLSX from 'xlsx'
 
 const generateCustomId = async () => {
   const lastVoter = await Voter.findOne().sort("-customId");
