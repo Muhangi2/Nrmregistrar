@@ -27,17 +27,17 @@ const Sidebar = async() => {
         icon:<MdDashboard/>,
       },{
         title:"Addmember",
-        path:"/dashboard/users/add",
+        path:"/dashboard/members/add",
         icon:<IoPersonAdd/>,
       },
       {
         title:"Members",
-        path:"/dashboard/users",
+        path:"/dashboard/members",
         icon:<IoIosPeople />,
       },
       {
         title:"Colleges",
-        path:"/dashboard/transactions",
+        path:"/dashboard/colleges",
         icon:<FaBuildingColumns/>,
       },
       

@@ -23,7 +23,7 @@ const UsersPage = async(searchParams) => {
             <button type="submit" className={styles.exportButton}>
               <Link className="hover:underline" href={`/api/tables/${lowercaseTable}?format=xlsx`}>Export Excel</Link>
             </button>
-          <Link href="/dashboard/users/add">
+          <Link href="/dashboard/members/add">
             <button className={styles.addButton}>Add New</button>
           </Link>
         </div>
