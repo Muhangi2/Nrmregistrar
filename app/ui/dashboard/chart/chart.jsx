@@ -20,24 +20,25 @@ const Chart = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Members per College and based on Gender</div>
-      <ResponsiveContainer width="90%" height={400}>
+      <div className={styles.title}>Members per College and Based on Gender</div>
+      <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={chartData}
           margin={{
-            top: 5,
-            right: 10,
-            left: 20,
+            top: 2,
+            right: 50, // Extra space for labels on the right
+            left: 0,
             bottom: 5,
           }}
+          barCategoryGap="20%"
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" interval={0}  // Show all labels
-            angle={-45}  // Rotate labels by -45 degrees
+            angle={-20}  // Rotate labels by -45 degrees
             textAnchor="end" />
-          <YAxis />
+          <YAxis tickCount={10} allowDecimals={false} />
           <Tooltip />
-          <Legend />
+          <Legend align="right" verticalAlign="top" />
           <Bar dataKey="male" fill="#82ca9d" name="Male" />
           <Bar dataKey="female" fill="#8884d8" name="Female" />
         </BarChart>

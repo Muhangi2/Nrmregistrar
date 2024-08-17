@@ -15,12 +15,13 @@ const collegeToSchoolsMap = {
   COVAB: ["School of Veterinary Medicine", "School of Biosciences"],
   SCHOOLOFLAW: ["School of Law"],
   JINJACAMPUS: ["Jinja School of Business", "Jinja School of Computing"],
- 
 };
 
 const AddUserPage = () => {
   const [selectedCollege, setSelectedCollege] = useState("");
   const [schools, setSchools] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     if (selectedCollege && collegeToSchoolsMap[selectedCollege]) {
@@ -34,9 +35,29 @@ const AddUserPage = () => {
     setSelectedCollege(event.target.value);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setIsSuccess(false);
+
+    const formData = new FormData(event.target);
+
+    try {
+      await addVoters(formData);
+      setIsSuccess(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle the error appropriately here
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <form action={addVoters} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Input fields as in the original code */}
+        
         <div className={styles.inputGroup}>
           <label htmlFor="firstname">First Name</label>
           <input type='text' id="firstname" name='firstname' required />
@@ -105,8 +126,8 @@ const AddUserPage = () => {
             <option value="CAES">CAES</option>
             <option value="COBAMS">COBAMS</option>
             <option value="COVAB">COVAB</option>
-            <option value="SCHOOL OF LAW">SCHOOLOFLAW</option>
-            <option value="JINJA CAMPUS">JINJACAMPUS</option>
+            <option value="SCHOOLOFLAW">SCHOOLOFLAW</option>
+            <option value="JINJACAMPUS">JINJACAMPUS</option>
           </select>
         </div>
         <div className={styles.inputGroup}>
@@ -118,9 +139,14 @@ const AddUserPage = () => {
             ))}
           </select>
         </div>
+        
         <div className={styles.buttonContainer}>
-          <button type='submit'>Submit</button>
+          <button type='submit' disabled={isLoading}>
+            {isLoading ? 'Submitting...' : 'Submit'}
+          </button>
         </div>
+        
+        {isSuccess && <p className={styles.successMessage}>You have registered successfully!</p>}
       </form>
     </div>
   );

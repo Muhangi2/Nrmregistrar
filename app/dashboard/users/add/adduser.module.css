@@ -78,6 +78,13 @@
 .form button:hover {
   background-color: #5b4cdb;
 }
+.successMessage {
+  color: green; /* Set the text color to green for success */
+  font-size: 16px; /* Adjust the font size */
+  margin-top: 20px; /* Add some space above the message */
+  text-align: center; /* Center the text */
+  font-weight: bold; /* Make the text bold */
+}
 
 @media (max-width: 768px) {
   .inputGroup {
