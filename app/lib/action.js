@@ -4,7 +4,7 @@ import { Voter } from "./models";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signOut, signIn } from "../auth";
-import * as XLSX from 'xlsx'
+import * as XLSX from "xlsx";
 
 const generateCustomId = async () => {
   const lastVoter = await Voter.findOne().sort("-customId");
@@ -80,8 +80,8 @@ export const addVoters = async (formData) => {
     // perhaps by returning an error message to the client
   }
 
-  revalidatePath("/dashboard/users");
-  redirect("/dashboard/users");
+  revalidatePath("/dashboard/members");
+  redirect("/dashboard/members");
 };
 
 export const deleteVoter = async (formData) => {
@@ -101,21 +101,21 @@ export const deleteVoter = async (formData) => {
     console.log(`Voter with ID: ${id} deleted successfully`);
 
     // Revalidate the relevant path and redirect if needed
-    revalidatePath("/dashboard/users");
-    redirect("/dashboard/users");
+    revalidatePath("/dashboard/members");
+    redirect("/dashboard/members");
   } catch (error) {
     console.log(error, "Error deleting Voter");
   }
 };
-export const authenticate = async (formData) => {
+export const authenticate = async (prevState, formData) => {
   "use server";
   const { username, password } = Object.fromEntries(formData);
   console.log("username and password", username, password);
   try {
     await signIn("credentials", { username, password });
+    revalidatePath("/dashboard");
   } catch (error) {
-    console.log(error);
-    throw error;
+    return "Wrong Credentials";
   }
 };
 export const logout = async (formData) => {

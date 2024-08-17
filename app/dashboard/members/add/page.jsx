@@ -13,7 +13,7 @@ const collegeToSchoolsMap = {
   CAES: ["School of Agricultural Sciences", "School of Food Technology, Nutrition and Bioengineering"],
   COBAMS: ["School of Business", "School of Economics"],
   COVAB: ["School of Veterinary Medicine", "School of Biosciences"],
-  SCHOOLOFLAW: ["School of Law"],
+  SCHOOL_OF_LAW: ["School of Law"],
   JINJACAMPUS: ["Jinja School of Business", "Jinja School of Computing"],
 };
 
@@ -126,7 +126,7 @@ const AddUserPage = () => {
             <option value="CAES">CAES</option>
             <option value="COBAMS">COBAMS</option>
             <option value="COVAB">COVAB</option>
-            <option value="SCHOOLOFLAW">SCHOOLOFLAW</option>
+            <option value="SCHOOLOFLAW">SCHOOL_OF_LAW</option>
             <option value="JINJACAMPUS">JINJACAMPUS</option>
           </select>
         </div>

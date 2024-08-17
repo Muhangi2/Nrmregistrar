@@ -7,7 +7,8 @@ import Piechart from "../ui/dashboard/piechart/piechart"
 import { fetchDashboardData } from '../lib/data'
 //importing icons
 import { FaUsers,FaMale, FaFemale , FaUniversity } from 'react-icons/fa';
-import Collegepage from './transactions/page'
+
+import Collegepage from './colleges/page'
 import { fetchCollegeData } from '../lib/data'
 
 const page = async() => {

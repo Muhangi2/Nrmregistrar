@@ -5,7 +5,6 @@ import {MdDashboard,MdLogout,} from 'react-icons/md'
 import { IoPersonAdd } from "react-icons/io5";
 import { IoIosPeople } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
-import { IoIosLogOut } from "react-icons/io";
 import { logout } from '@/app/lib/action';
 import { auth } from '@/app/auth';
 

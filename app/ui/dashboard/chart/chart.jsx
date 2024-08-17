@@ -4,7 +4,7 @@ import styles from "./chart.module.css";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const allColleges = [
-  'CEES', 'COCIS', 'CEDAT', 'CHS', 'CHUSS', 'CONAS', 'CAES', 'COBAMS', 'COVAB', 'SCHOOL OF LAW', 'JINJA CAMPUS'
+  'CEES', 'COCIS', 'CEDAT', 'CHS', 'CHUSS', 'CONAS', 'CAES', 'COBAMS', 'COVAB', 'SCHOOL_OF_LAW', 'JINJA CAMPUS'
 ];
 
 const Chart = ({ data }) => {
